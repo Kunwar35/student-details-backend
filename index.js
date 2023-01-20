@@ -22,7 +22,7 @@ app.use(bodyparser.urlencoded({
 
 app.post("/getFaceData", async (req,res)=>{
     try {
-        fs.writeFileSync("./images/img.jpg", req.body.image, "base64")
+        fs.writeFileSync("./img.jpg", req.body.image, "base64")
         getFaceData(res)
     } catch (error) {
         console.log(error)
@@ -37,7 +37,7 @@ function getFaceData(res){
         faceapi.nets.ssdMobilenetv1.loadFromDisk('./models'),
     ]).then(async () => {
         console.log("loaded")
-        const image = await canvas.loadImage("./images/img.jpg")
+        const image = await canvas.loadImage("./img.jpg")
         console.log("Image loaded")
         const result = await faceapi
         .detectSingleFace(image)
